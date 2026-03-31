@@ -116,13 +116,11 @@ public:
         //   1. Increment g_assignmentCount
         g_assignmentCount++;
         //   2. Check for self-assignment (if this == &other)
-        if(this != &other){
-            delete[] m_data;
-            m_length = other.m_length;
-            m_data = new char[m_length + 1];
-            strcpy(m_data, other.m_data);
-            
-        }
+        if(this == &other) return *this;
+        delete[] m_data;
+        m_length = other.m_length;
+        m_data = new char[m_length + 1];
+        strcpy(m_data, other.m_data);
         //   3. Delete old m_data (delete[])
         //   4. Copy m_length from other
         //   5. Allocate new memory: new char[m_length + 1]
